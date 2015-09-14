@@ -22,7 +22,7 @@ public static void main(String[] args)
 	            if (!sideOk)
 	            	System.out.println("Illegal Input Detected, side" + i + " must be greater than Zero");
 	        } catch (NumberFormatException e) {
-	            System.out.println("Illegal Input Detected, side" + i + " not numberic");
+	            System.out.println("Illegal Input Detected, side" + i + " not numeric");
 	        }
 	   } while (!sideOk);
     }
