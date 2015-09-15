@@ -31,7 +31,6 @@ public static void main(String[] args)
    
    }
     
-   
 
    // Triangle judgment function
    public static String Judge(double side1, double side2, double side3) {
@@ -40,24 +39,34 @@ public static void main(String[] args)
 	   double side2Sq = side2*side2;  //represents (side2)^2
 	   double side3Sq = side3*side3;  //represents (side3)^2
     
-    //check if this is a triangle, triangle must meet the formula: a < b + c, where a,b,c represents sides of the triangle
-    if(side1 < side2 + side3 && side2 < side1 + side3 && side3 < side1 + side2){
-    	//if side1,side2,side3 are all different values ,then display "scalene"
-    	if((side1 != side2) && (side2 != side3)){ 
-    		return "scalene";
-    	//if side1=side2=side3 then display "equilateal"	
-    	}else if(side1==side2 && side2 == side3){ 
+	    //check if this is a triangle, triangle must meet the formula: a < b + c, where a,b,c represents sides of the triangle
+	    if(!(side1 < side2 + side3 && side2 < side1 + side3 && side3 < side1 + side2)) {
+	    	 return "Not triangle"; //if the sides cannot meet the requirement a < b + c, then it's not a triangle
+	    }
+	    
+	    // this is a triangle
+	    
+	    //  if a^2 = b^2 + c^2, where a,b,c represent sides of the triangle, then return "right triangle" (Pythagoras Theorem)	
+	    //	must check this first or it will be reported as other type before evaluation 
+	    if(side1Sq + side2Sq==side3Sq || side2Sq + side3Sq == side1Sq || side3Sq + side1Sq == side2Sq){
+	       return "right triangle"; 
+	    }
+	   
+	    // now evaluate sides for equality
+	    
+		//if side1,side2,side3 are all different values ,then return "scalene"
+		if((side1 != side2) && (side2 != side3) && (side1 != side3)){ 
+			return "scalene";
+		//if side1=side2=side3 then return "equilateal"	
+		}else if(side1==side2 && side2 == side3){ 
 	        return "equilateral";
 	   //if only two of the three sides are the same,then display "isosceles"
-    	}else if(((side1==side2)&&(side2!=side3))||((side2==side3)&&(side3!=side1))||((side1==side3)&&(side2!=side1))){
-    		return "isosceles"; 
-       //if a^2 = b^2 + c^2, where a,b,c represent sides of the triangle, then display "right triangle"	(Pythagoras Theorem)	
-        }else if(side1Sq + side2Sq==side3Sq || side2Sq + side3Sq == side1Sq || side3Sq + side1Sq == side2Sq){
-	        return "right triangle"; 
-        }
-    }
+		}else if(((side1==side2)&&(side2!=side3))||((side2==side3)&&(side3!=side1))||((side1==side3)&&(side2!=side1))){
+			return "isosceles"; 
+	    } else {
+	    	return "error"; //should not be here since all triangle have 1, 2, or 3 equal sides
+	    }
+
+   	}
     
-    return "Not triangle"; //if the sides cannot meet the requirement a < b + c, then it's not a triangle
-    
-   }
 }
